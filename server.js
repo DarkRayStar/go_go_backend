@@ -82,6 +82,7 @@ const favRouter = require('./routes/customer-routes/favItems');
 // user management routes
 const userRoutes = require("./routes/userManagement-routes/userRegistration");
 const userLoginRoutes = require("./routes/userManagement-routes/userLogin");
+const passwordResetRoutes = require("./routes/userManagement-routes/passwordReset");
 
 const req = require('express/lib/request');
 
@@ -94,6 +95,7 @@ app.use('/favorites', favRouter);
 // User Management Routes
 app.use("/user", userRoutes);
 app.use("/user/login", userLoginRoutes);
+app.use("/user/password-reset", passwordResetRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
