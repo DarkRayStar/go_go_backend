@@ -75,20 +75,23 @@ connection.once('open', () => {
 
 const movieRouter = require('./routes/movie-admin-routes/movies');
 
+//Customer Routes
 const cartRouter = require('./routes/customer-routes/cart');
+const favRouter = require('./routes/customer-routes/favItems');
 
 // user management routes
-const userRoutes = require("./routes/userManagement-routes/userRegistration"); 
-const userLoginRoutes = require("./routes/userManagement-routes/userLogin"); 
-
-
+const userRoutes = require("./routes/userManagement-routes/userRegistration");
+const userLoginRoutes = require("./routes/userManagement-routes/userLogin");
 
 const req = require('express/lib/request');
 
 app.use('/movies', movieRouter);
-app.use('/cart', cartRouter);
 
-// user management routes
+//Customer Routes
+app.use('/cart', cartRouter);
+app.use('/favorites', favRouter);
+
+// User Management Routes
 app.use("/user", userRoutes);
 app.use("/user/login", userLoginRoutes);
 

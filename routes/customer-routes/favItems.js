@@ -1,8 +1,8 @@
 const router = require('express').Router();
-let Cart = require('../../models/customer-models/item-cart.model');
+let Fav = require('../../models/customer-models/favorite-items.model');
 
 router.route('/').get((req, res) => {
-    Cart.find()
+    Fav.find()
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -11,57 +11,54 @@ router.route('/add').post((req, res) => {
     const itemName = req.body.itemName;
     const description = req.body.description;
     const price = req.body.price;
-    const quantity = req.body.quantity;
     const image = req.body.image;
-    const offers = req.body.offers;
+    const date = req.body.date;
     // const userId = req.body.userId;
     // const showOnCart = req.body.showOnCart;
     // const paidStatus = req.body.paidStatus;
 
-    const newCart = new Cart({
+    const newFav = new Fav({
         itemName,
         description,
         price,
-        quantity,
         image,
-        offers,
+        date,
         // userId,
         // showOnCart,
         // paidStatus,
     });
 
-    newCart.save()
-        .then(() => res.json('Item added to the cart!'))
+    newFav.save()
+        .then(() => res.json('Item added to the Favorites!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').get((req, res) => {
-    Cart.findById(req.params.id)
+    Fav.findById(req.params.id)
         .then(item => res.json(item))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').delete((req, res) => {
-    Cart.findByIdAndDelete(req.params.id)
+    Fav.findByIdAndDelete(req.params.id)
         .then(() => res.json('Item deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/').delete((req, res) => {
-    Cart.deleteMany()
+    Fav.deleteMany()
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/update/:id').post((req, res) => {
-    Cart.findById(req.params.id)
+    Fav.findById(req.params.id)
         .then(item => {
             item.itemName = req.body.itemName;
             item.description = req.body.description;
             item.price = req.body.price;
-            item.quantity = req.body.quantity;
             item.image = req.body.image;
-            item.offers = req.body.offers;
+            item.date = req.body.date;
             // item.userId = req.body.userId;
             // item.showOnCart = req.body.showOnCart;
             // item.paidStatus = req.body.paidStatus;
