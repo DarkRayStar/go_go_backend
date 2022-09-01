@@ -78,7 +78,8 @@ const movieRouter = require('./routes/movie-admin-routes/movies');
 const cartRouter = require('./routes/customer-routes/cart');
 
 // user management routes
-const userRoutes = require("./routes/userMangemnt-routes/userRegistration"); 
+const userRoutes = require("./routes/userManagement-routes/userRegistration"); 
+const userLoginRoutes = require("./routes/userManagement-routes/userLogin"); 
 
 
 
@@ -89,6 +90,7 @@ app.use('/cart', cartRouter);
 
 // user management routes
 app.use("/user", userRoutes);
+app.use("/user/login", userLoginRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
