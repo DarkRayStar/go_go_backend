@@ -78,8 +78,8 @@ const movieRouter = require('./routes/movie-admin-routes/movies');
 const cartRouter = require('./routes/customer-routes/cart');
 
 // user management routes
-const userRoutes = require("./routes/userMangemnt-routes/userRegistration"); 
-const userLoginRoutes = require("./routes/userMangemnt-routes/userLogin"); 
+const userRoutes = require("./routes/userManagement-routes/userRegistration"); 
+const userLoginRoutes = require("./routes/userManagement-routes/userLogin"); 
 
 
 
