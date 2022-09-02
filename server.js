@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const bodyParser = require("body-parser")
+
 // const fileRoute = require('./routes/admin-routes/adminFile');
 // const path = require('path');
 
@@ -12,6 +14,7 @@ const port = process.env.PORT || 5050;
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
@@ -86,6 +89,9 @@ const passwordResetRoutes = require("./routes/userManagement-routes/passwordRese
 
 const req = require('express/lib/request');
 
+// Delivery Routes
+const deliveryRoutes = require("./routes/delivery-routes/deliveryOrder");
+
 app.use('/movies', movieRouter);
 
 //Customer Routes
@@ -96,6 +102,9 @@ app.use('/favorites', favRouter);
 app.use("/user", userRoutes);
 app.use("/user/login", userLoginRoutes);
 app.use("/user/password-reset", passwordResetRoutes);
+
+// Delivery Routes
+app.use("/delivery", deliveryRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
