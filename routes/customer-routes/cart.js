@@ -12,22 +12,22 @@ router.route('/add').post((req, res) => {
     const description = req.body.description;
     const price = req.body.price;
     const quantity = req.body.quantity;
-    const image = req.body.image;
+    const images = req.body.images;
     const offers = req.body.offers;
-    // const userId = req.body.userId;
-    // const showOnCart = req.body.showOnCart;
-    // const paidStatus = req.body.paidStatus;
+    const userId = req.body.userId;
+    const showOnCart = req.body.showOnCart;
+    const paidStatus = req.body.paidStatus;
 
     const newCart = new Cart({
         itemName,
         description,
         price,
         quantity,
-        image,
+        images,
         offers,
-        // userId,
-        // showOnCart,
-        // paidStatus,
+        userId,
+        showOnCart,
+        paidStatus,
     });
 
     newCart.save()
@@ -60,11 +60,11 @@ router.route('/update/:id').post((req, res) => {
             item.description = req.body.description;
             item.price = req.body.price;
             item.quantity = req.body.quantity;
-            item.image = req.body.image;
+            item.images = req.body.images;
             item.offers = req.body.offers;
-            // item.userId = req.body.userId;
-            // item.showOnCart = req.body.showOnCart;
-            // item.paidStatus = req.body.paidStatus;
+            item.userId = req.body.userId;
+            item.showOnCart = req.body.showOnCart;
+            item.paidStatus = req.body.paidStatus;
 
             item.save()
                 .then(() => res.json('Item updated!'))
