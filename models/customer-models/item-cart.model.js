@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itemCartSchema = new Schema({
-    itemName: { type: String, required: true },
-    description: { type: String, required: true },
-    price: { type: String, required: true },
-    quantity: { type: String, required: true },
+    itemName: { type: String },
+    description: { type: String },
+    price: { type: String },
+    quantity: { type: String },
     images: [{ type: String }],
-    offers: { type: String, required: true },
+    offers: { type: String },
     userId: { type: String },
     showOnCart: { type: Boolean },
     paidStatus: { type: Boolean },
