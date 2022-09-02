@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
 		}
 
 		//creating a URL
-		const url = `${process.env.BASE_URL}student-password-reset/${user._id}/${token.token}/`;
+		const url = `${process.env.BASE_URL}user-password-reset/${user._id}/${token.token}/`;
 		//send email
 		await sendEmail(user.email, "Password Reset", url);
 
