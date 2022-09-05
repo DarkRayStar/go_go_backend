@@ -84,6 +84,9 @@ const userRoutes = require("./routes/userManagement-routes/userRegistration");
 const userLoginRoutes = require("./routes/userManagement-routes/userLogin");
 const passwordResetRoutes = require("./routes/userManagement-routes/passwordReset");
 
+//Sotre admin routes
+const storeAdmin = require("./routes/storeAdmin-routes/storeAdmin.routes")
+
 const req = require('express/lib/request');
 
 app.use('/movies', movieRouter);
@@ -96,6 +99,9 @@ app.use('/favorites', favRouter);
 app.use("/user", userRoutes);
 app.use("/user/login", userLoginRoutes);
 app.use("/user/password-reset", passwordResetRoutes);
+
+//storeAdmin routes
+app.use("/storeAdmin", storeAdmin);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
