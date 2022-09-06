@@ -2,7 +2,13 @@ const router = require('express').Router();
 let Cart = require('../../models/customer-models/item-cart.model');
 
 router.route('/').get((req, res) => {
-    Cart.find()
+    Cart.find({ showOnCart: true })
+        .then(items => res.json(items))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/history').get((req, res) => {
+    Cart.find({ paidStatus: true })
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
 });
