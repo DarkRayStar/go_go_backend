@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     zipCode: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: true },
+	image: { type: String, required: true }
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -35,6 +36,7 @@ const validate = (data) => {
 		zipCode: Joi.string().required().label("Postal/ Zip Code"),
 		district: Joi.string().required().label("District"),
 		password: passwordComplexity().required().label("Password"),
+		image: Joi.string().required().label("Image URL"),
 	});
 	return schema.validate(data);
 };
