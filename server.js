@@ -87,6 +87,9 @@ const userRoutes = require("./routes/userManagement-routes/userRegistration");
 const userLoginRoutes = require("./routes/userManagement-routes/userLogin");
 const passwordResetRoutes = require("./routes/userManagement-routes/passwordReset");
 
+//Store admin routes
+const storeAdmin = require("./routes/storeAdmin-routes/storeAdmin.routes")
+
 const req = require('express/lib/request');
 
 // Delivery Routes
@@ -105,6 +108,9 @@ app.use("/user/password-reset", passwordResetRoutes);
 
 // Delivery Routes
 app.use("/delivery", deliveryRoutes);
+
+//storeAdmin routes
+app.use("/storeAdmin", storeAdmin);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
