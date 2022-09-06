@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, validate } = require("../../models/userManagement-models/user");
 const bcrypt = require("bcrypt");
 
+// insert data
 router.post("/registration", async (req, res) => {
 	try {
 		const { error } = validate(req.body);
@@ -23,5 +24,21 @@ router.post("/registration", async (req, res) => {
 		res.status(500).send({ message: "Internal Server Error" });
 	}
 });
+
+
+// get all users details
+router.route('/get-all').get((req, res) => {
+	User.find()
+		.then(userDetails => res.json(userDetails))
+		.catch(err => res.status(400).json('Error: ' + err));
+});
+
+// get user details by id
+router.route('/:id').get((req, res) => {
+	User.findById(req.params.id)
+		.then(userDetails => res.json(userDetails))
+		.catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 module.exports = router;
