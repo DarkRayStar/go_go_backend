@@ -40,5 +40,12 @@ router.route('/:id').get((req, res) => {
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
+//delete Account
+router.route('/:id').delete((req, res) => {
+    User.findByIdAndDelete(req.params.id)
+        .then(() => res.json('User Account deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 module.exports = router;
