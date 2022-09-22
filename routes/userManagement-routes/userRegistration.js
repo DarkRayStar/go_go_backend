@@ -47,5 +47,26 @@ router.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//update item details
+router.route('/update-profile/:id').post((req, res) => {
+    User.findById(req.params.id)
+        .then(userDetails => {
+
+            userDetails.firstName = req.body.firstName;
+            userDetails.lastName = req.body.lastName;
+            userDetails.mobileNumber = req.body.mobileNumber;
+            userDetails.phoneNumber = req.body.phoneNumber;
+            userDetails.address = req.body.address;
+            userDetails.zipCode = req.body.zipCode;
+			userDetails.district = req.body.district;
+            userDetails.image = req.body.image;
+
+            userDetails.save()
+                .then(() => res.json('Item updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 module.exports = router;
