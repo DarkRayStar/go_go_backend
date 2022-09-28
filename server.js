@@ -81,6 +81,7 @@ const movieRouter = require('./routes/movie-admin-routes/movies');
 //Customer Routes
 const cartRouter = require('./routes/customer-routes/cart');
 const favRouter = require('./routes/customer-routes/favItems');
+const reviewRouter = require('./routes/customer-routes/review')
 
 // user management routes
 const userRoutes = require("./routes/userManagement-routes/userRegistration");
@@ -100,6 +101,7 @@ app.use('/movies', movieRouter);
 //Customer Routes
 app.use('/cart', cartRouter);
 app.use('/favorites', favRouter);
+app.use('/reviews', reviewRouter);
 
 // User Management Routes
 app.use("/user", userRoutes);
