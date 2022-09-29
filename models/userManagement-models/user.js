@@ -13,7 +13,9 @@ const userSchema = new mongoose.Schema({
     zipCode: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: true },
-	image: { type: String, required: true }
+	image: { type: String, required: true },
+	registeredDate: { type: Date, required: true}
+
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -22,6 +24,10 @@ userSchema.methods.generateAuthToken = function () {
 	});
 	return token;
 };
+
+let registeredDate 
+
+
 
 const User = mongoose.model("user", userSchema);
 
@@ -37,6 +43,7 @@ const validate = (data) => {
 		district: Joi.string().required().label("District"),
 		password: passwordComplexity().required().label("Password"),
 		image: Joi.string().required().label("Image URL"),
+		registeredDate: Joi.date().required().label("Registered Date")
 	});
 	return schema.validate(data);
 };
