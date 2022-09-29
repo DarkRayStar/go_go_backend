@@ -34,9 +34,9 @@ router.route('/get-all').get((req, res) => {
 });
 
 router.route('/get-user-by-email/:email').get((req, res) => {
-    User.find({ email: req.params.email })
-        .then(items => res.json(items))
-        .catch(err => res.status(400).json('Error: ' + err));
+	User.find({ email: req.params.email })
+		.then(items => res.json(items))
+		.catch(err => res.status(400).json('Error: ' + err));
 });
 
 // get user details by id
@@ -48,31 +48,50 @@ router.route('/:id').get((req, res) => {
 
 //delete Account
 router.route('/:id').delete((req, res) => {
-    User.findByIdAndDelete(req.params.id)
-        .then(() => res.json('User Account deleted.'))
-        .catch(err => res.status(400).json('Error: ' + err));
+	User.findByIdAndDelete(req.params.id)
+		.then(() => res.json('User Account deleted.'))
+		.catch(err => res.status(400).json('Error: ' + err));
 });
 
 //update item details
 router.route('/update-profile/:id').post((req, res) => {
-    User.findById(req.params.id)
-        .then(userDetails => {
+	User.findById(req.params.id)
+		.then(userDetails => {
 
-            userDetails.firstName = req.body.firstName;
-            userDetails.lastName = req.body.lastName;
-            userDetails.mobileNumber = req.body.mobileNumber;
-            userDetails.phoneNumber = req.body.phoneNumber;
-            userDetails.address = req.body.address;
-            userDetails.zipCode = req.body.zipCode;
+			userDetails.firstName = req.body.firstName;
+			userDetails.lastName = req.body.lastName;
+			userDetails.mobileNumber = req.body.mobileNumber;
+			userDetails.phoneNumber = req.body.phoneNumber;
+			userDetails.address = req.body.address;
+			userDetails.zipCode = req.body.zipCode;
 			userDetails.district = req.body.district;
-            userDetails.image = req.body.image;
+			userDetails.image = req.body.image;
 
-            userDetails.save()
-                .then(() => res.json('Item updated!'))
-                .catch(err => res.status(400).json('Error: ' + err));
-        })
-        .catch(err => res.status(400).json('Error: ' + err));
+			userDetails.save()
+				.then(() => res.json('Item updated!'))
+				.catch(err => res.status(400).json('Error: ' + err));
+		})
+		.catch(err => res.status(400).json('Error: ' + err));
 });
 
+//search Date Rage
+router.post("/search", async (req, res) => {
+	try {
+		User
+			.find({
+				registeredDate: {
+					$gte: new Date(req.body.fromDate),
+					$lt: new Date(req.body.toDate),
+				},
+			})
+			.then((result) => {
+				// console.log(result);
+				res.json(result);
+			});
+	} catch (error) {
+		// console.log(error);
+		res.status(500).send({ message: error });
+	}
+});
 
 module.exports = router;
