@@ -8,7 +8,8 @@ const itemSchema = new Schema({
     specifications: { type: String, required: true },
     price: { type: String, required: true },
     quantity: { type: String, required: true },
-    images: [{type: String}],
+    orderedQuanity: { type: String, required: true },
+    images: [{ type: String }],
     offer: { type: String, required: true },
 
 }, {

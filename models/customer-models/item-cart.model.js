@@ -8,6 +8,7 @@ const itemCartSchema = new Schema({
     description: { type: String },
     price: { type: String },
     quantity: { type: String },
+    orderedQuanity: { type: String },
     images: [{ type: String }],
     offers: { type: String },
     userId: { type: String },
