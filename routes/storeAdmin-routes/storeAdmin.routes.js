@@ -10,23 +10,26 @@ router.route('/').get((req, res) => {
 
 //insert item
 router.route('/add').post((req, res) => {
-    
+
     const itemName = req.body.itemName;
     const description = req.body.description;
     const specifications = req.body.specifications;
     const price = req.body.price;
     const quantity = req.body.quantity;
+    const orderedQuanity = req.body.orderedQuanity;
     const images = req.body.images;
     const offer = req.body.offer;
 
     const newItem = new Item({
-        itemName ,
-        description ,
+        itemName,
+        description,
         specifications,
-        price ,
-        quantity ,
-        images ,
-        offer
+        price,
+        quantity,
+        orderedQuanity,
+        images,
+        offer,
+
     });
 
     newItem.save()
@@ -59,6 +62,7 @@ router.route('/update/:id').post((req, res) => {
             item.specifications = req.body.specifications;
             item.price = req.body.price;
             item.quantity = req.body.quantity;
+            item.orderedQuanity = req.body.orderedQuanity;
             item.images = req.body.images;
             item.offer = req.body.offer;
 

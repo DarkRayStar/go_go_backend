@@ -18,6 +18,7 @@ router.route('/add').post((req, res) => {
     const description = req.body.description;
     const price = req.body.price;
     const quantity = req.body.quantity;
+    const orderedQuanity = req.body.orderedQuanity;
     const images = req.body.images;
     const offers = req.body.offers;
     const userId = req.body.userId;
@@ -29,6 +30,7 @@ router.route('/add').post((req, res) => {
         description,
         price,
         quantity,
+        orderedQuanity,
         images,
         offers,
         userId,
@@ -66,6 +68,7 @@ router.route('/update/:id').post((req, res) => {
             item.description = req.body.description;
             item.price = req.body.price;
             item.quantity = req.body.quantity;
+            item.orderedQuanity = req.body.orderedQuanity;
             item.images = req.body.images;
             item.offers = req.body.offers;
             item.userId = req.body.userId;
