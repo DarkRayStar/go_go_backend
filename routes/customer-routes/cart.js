@@ -82,4 +82,23 @@ router.route('/update/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/updatePayment/:id').post((req, res) => {
+    Cart.findById(req.params.id)
+        .then(item => {
+            item.showOnCart = req.body.showOnCart;
+            item.paidStatus = req.body.paidStatus;
+            item.orderedDate = req.body.orderedDate;
+
+            const x = item.quantity;
+            const y = item.orderedQuanity;
+            let sub = x - y;
+
+            item.quantity = sub;
+
+            item.save()
+                .then(() => res.json('Payment updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 module.exports = router;
