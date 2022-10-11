@@ -15,7 +15,8 @@ const deliveryOrderSchema = new Schema({
     zip: { type: String, required: true },
     service: { type: String, required: true },
     trackingID: { type: String, required: true },
-    fee: { type: Number, required: true }
+    fee: { type: Number, required: true },
+    status: { type: String, required: true }
 }, {
     timestamps: true
 });
