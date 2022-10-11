@@ -20,7 +20,8 @@ router.route('/add').post((req, res) => {
         zip: req.body.zip,
         service: req.body.service,
         trackingID: req.body.trackingID,
-        fee: req.body.fee
+        fee: req.body.fee,
+        status: req.body.status
     });
 
     newDeliveryOrder.save()
@@ -54,7 +55,8 @@ router.route('/update/:id').post((req, res) => {
             delivery.zip= req.body.zip,
             delivery.service= req.body.service,
             delivery.trackingID= req.body.trackingID,
-            delivery.fee= req.body.fee
+            delivery.fee= req.body.fee,
+            delivery.status= req.body.status 
 
             delivery.save()
                 .then(() => res.json('Delivery Order Updated'))
@@ -62,6 +64,12 @@ router.route('/update/:id').post((req, res) => {
         })
         .catch(err => res.status(400).json('Error: ' + err));
         
+});
+
+router.route('/updateDeliveryStatus/:id').post((req,res) => {
+    DeliveryOrder.findByIdAndUpdate(req.params.id,{"status" : req.body.status})
+    .then(() => res.json('Delivery Status Updated'))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 module.exports = router;
