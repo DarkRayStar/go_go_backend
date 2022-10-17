@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itemCartSchema = new Schema({
+    itemId: { type: String },
     itemName: { type: String },
     description: { type: String },
     price: { type: String },
@@ -16,6 +17,7 @@ const itemCartSchema = new Schema({
     paidStatus: { type: Boolean },
     // orderedDate: { type: Date, default: Date.now },
     orderedDate: { type: String },
+    userId: { type: String, required: true },
 
 }, {
     timestamps: true,

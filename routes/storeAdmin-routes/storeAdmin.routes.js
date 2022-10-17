@@ -62,12 +62,41 @@ router.route('/update/:id').post((req, res) => {
             item.specifications = req.body.specifications;
             item.price = req.body.price;
             item.quantity = req.body.quantity;
-            item.orderedQuanity = req.body.orderedQuanity;
+
             item.images = req.body.images;
             item.offer = req.body.offer;
+            const x = parseInt(item.orderedQuanity);
+            const y = parseInt(req.body.orderedQuanity);
+
+            var sum = x + y;
+            item.orderedQuanity = sum;
 
             item.save()
                 .then(() => res.json('Item updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+//updateItemPayment
+router.route('/updateItemPayment/:id').post((req, res) => {
+    Item.findById(req.params.id)
+        .then(item => {
+
+            const a = parseInt(item.orderedQuanity);
+            const b = parseInt(req.body.orderedQuanity);
+
+            var sum = a + b;
+            item.orderedQuanity = sum;
+
+            const x = parseInt(item.quantity);
+            const y = parseInt(req.body.orderedQuanity);
+            let sub = x - y;
+
+            item.quantity = sub;
+
+            item.save()
+                .then(() => res.json('Payment updated!'))
                 .catch(err => res.status(400).json('Error: ' + err));
         })
         .catch(err => res.status(400).json('Error: ' + err));

@@ -1,19 +1,25 @@
 const router = require('express').Router();
 let Cart = require('../../models/customer-models/item-cart.model');
 
-router.route('/').get((req, res) => {
-    Cart.find({ showOnCart: true })
+router.route('/get/:id').get((req, res) => {
+    const UId = req.params.id;
+
+    Cart.find({ showOnCart: true, userId: UId })
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
+
 });
 
-router.route('/history').get((req, res) => {
-    Cart.find({ paidStatus: true })
+router.route('/history/:id').get((req, res) => {
+    const UId = req.params.id;
+
+    Cart.find({ paidStatus: true, userId: UId })
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/add').post((req, res) => {
+    const itemId = req.body.itemId;
     const itemName = req.body.itemName;
     const description = req.body.description;
     const price = req.body.price;
@@ -26,6 +32,7 @@ router.route('/add').post((req, res) => {
     const paidStatus = req.body.paidStatus;
 
     const newCart = new Cart({
+        itemId,
         itemName,
         description,
         price,
@@ -64,16 +71,7 @@ router.route('/').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Cart.findById(req.params.id)
         .then(item => {
-            item.itemName = req.body.itemName;
-            item.description = req.body.description;
-            item.price = req.body.price;
-            item.quantity = req.body.quantity;
             item.orderedQuanity = req.body.orderedQuanity;
-            item.images = req.body.images;
-            item.offers = req.body.offers;
-            item.userId = req.body.userId;
-            item.showOnCart = req.body.showOnCart;
-            item.paidStatus = req.body.paidStatus;
 
             item.save()
                 .then(() => res.json('Item updated!'))
@@ -88,12 +86,6 @@ router.route('/updatePayment/:id').post((req, res) => {
             item.showOnCart = req.body.showOnCart;
             item.paidStatus = req.body.paidStatus;
             item.orderedDate = req.body.orderedDate;
-
-            const x = item.quantity;
-            const y = item.orderedQuanity;
-            let sub = x - y;
-
-            item.quantity = sub;
 
             item.save()
                 .then(() => res.json('Payment updated!'))

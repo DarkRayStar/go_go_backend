@@ -11,11 +11,13 @@ router.route('/add').post((req, res) => {
     const itemId = req.body.itemId;
     const itemName = req.body.itemName;
     const review = req.body.review;
+    const userId = req.body.userId;
 
     const newRew = new Rew({
         itemId,
         itemName,
         review,
+        userId,
     });
 
     newRew.save()

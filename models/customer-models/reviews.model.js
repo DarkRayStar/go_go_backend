@@ -6,7 +6,7 @@ const reviewsSchema = new Schema({
     itemId: { type: String, required: true },
     itemName: { type: String, required: true },
     review: { type: String, required: true },
-
+    userId: { type: String },
 }, {
     timestamps: true,
 });
