@@ -9,7 +9,7 @@ const favItemsSchema = new Schema({
     price: { type: String, required: true },
     image: [{ type: String }],
     date: { type: Date, default: Date.now },
-    // userId: { type: String },
+    userId: { type: String, required: true },
     // showOnCart: { type: Boolean },
     // paidStatus: { type: Boolean },
 

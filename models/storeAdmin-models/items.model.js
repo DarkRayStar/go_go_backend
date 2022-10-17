@@ -7,8 +7,8 @@ const itemSchema = new Schema({
     description: { type: String, required: true },
     specifications: { type: String, required: true },
     price: { type: String, required: true },
-    quantity: { type: String, required: true },
-    orderedQuanity: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    orderedQuanity: { type: Number, required: true },
     images: [{ type: String }],
     offer: { type: String, required: true },
 

@@ -1,8 +1,9 @@
 const router = require('express').Router();
 let Fav = require('../../models/customer-models/favorite-items.model');
 
-router.route('/').get((req, res) => {
-    Fav.find()
+router.route('/:id/').get((req, res) => {
+    const UId = req.params.id;
+    Fav.find({ userId: UId })
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -13,7 +14,7 @@ router.route('/add').post((req, res) => {
     const price = req.body.price;
     const image = req.body.image;
     const date = req.body.date;
-    // const userId = req.body.userId;
+    const userId = req.body.userId;
     // const showOnCart = req.body.showOnCart;
     // const paidStatus = req.body.paidStatus;
 
@@ -23,7 +24,7 @@ router.route('/add').post((req, res) => {
         price,
         image,
         date,
-        // userId,
+        userId,
         // showOnCart,
         // paidStatus,
     });
