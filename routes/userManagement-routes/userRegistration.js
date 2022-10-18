@@ -53,7 +53,7 @@ router.route('/:id').delete((req, res) => {
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-//update item details
+//update User details
 router.route('/update-profile/:id').post((req, res) => {
 	User.findById(req.params.id)
 		.then(userDetails => {
@@ -68,7 +68,7 @@ router.route('/update-profile/:id').post((req, res) => {
 			userDetails.image = req.body.image;
 
 			userDetails.save()
-				.then(() => res.json('Item updated!'))
+				.then(() => res.json('User Profile Successfully updated'))
 				.catch(err => res.status(400).json('Error: ' + err));
 		})
 		.catch(err => res.status(400).json('Error: ' + err));
