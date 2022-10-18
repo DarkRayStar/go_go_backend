@@ -1,0 +1,6 @@
+projectKey=SPM_gogoProject
+serverUrl=http://localhost:9000
+serverVersion=9.7.0.61563
+dashboardUrl=http://localhost:9000/dashboard?id=SPM_gogoProject
+ceTaskId=AYPpuZadkt12nbt0yUXu
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYPpuZadkt12nbt0yUXu
