@@ -1,4 +1,3 @@
-const { boolean } = require('joi');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -12,10 +11,8 @@ const itemCartSchema = new Schema({
     orderedQuanity: { type: String },
     images: [{ type: String }],
     offers: { type: String },
-    userId: { type: String },
     showOnCart: { type: Boolean },
     paidStatus: { type: Boolean },
-    // orderedDate: { type: Date, default: Date.now },
     orderedDate: { type: String },
     userId: { type: String, required: true },
 

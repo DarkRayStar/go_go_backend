@@ -3,9 +3,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser")
 
-// const fileRoute = require('./routes/admin-routes/adminFile');
-// const path = require('path');
-
 require('dotenv').config();
 
 const app = express();
@@ -76,8 +73,6 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
 
-const movieRouter = require('./routes/movie-admin-routes/movies');
-
 //Customer Routes
 const cartRouter = require('./routes/customer-routes/cart');
 const favRouter = require('./routes/customer-routes/favItems');
@@ -95,8 +90,6 @@ const req = require('express/lib/request');
 
 // Delivery Routes
 const deliveryRoutes = require("./routes/delivery-routes/deliveryOrder");
-
-app.use('/movies', movieRouter);
 
 //Customer Routes
 app.use('/cart', cartRouter);

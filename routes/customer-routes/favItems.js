@@ -15,8 +15,6 @@ router.route('/add').post((req, res) => {
     const image = req.body.image;
     const date = req.body.date;
     const userId = req.body.userId;
-    // const showOnCart = req.body.showOnCart;
-    // const paidStatus = req.body.paidStatus;
 
     const newFav = new Fav({
         itemName,
@@ -25,8 +23,6 @@ router.route('/add').post((req, res) => {
         image,
         date,
         userId,
-        // showOnCart,
-        // paidStatus,
     });
 
     newFav.save()
@@ -60,9 +56,6 @@ router.route('/update/:id').post((req, res) => {
             item.price = req.body.price;
             item.image = req.body.image;
             item.date = req.body.date;
-            // item.userId = req.body.userId;
-            // item.showOnCart = req.body.showOnCart;
-            // item.paidStatus = req.body.paidStatus;
 
             item.save()
                 .then(() => res.json('Item updated!'))
