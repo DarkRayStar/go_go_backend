@@ -33,8 +33,8 @@ router.route('/get-all').get((req, res) => {
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/get-user-by-email/:email').get((req, res) => {
-	User.find({ email: req.params.email })
+router.route('/get-user-by-id/:id').get((req, res) => {
+	User.find({ _id: req.params.id })
 		.then(items => res.json(items))
 		.catch(err => res.status(400).json('Error: ' + err));
 });
