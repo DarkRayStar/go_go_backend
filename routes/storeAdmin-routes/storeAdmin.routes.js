@@ -53,6 +53,28 @@ router.route('/:id').delete((req, res) => {
 
 
 //update item details
+router.route('/updateitem/:id').post((req, res) => {
+    Item.findById(req.params.id)
+        .then(item => {
+
+            item.itemName = req.body.itemName;
+            item.description = req.body.description;
+            item.specifications = req.body.specifications;
+            item.price = req.body.price;
+            item.quantity = req.body.quantity;
+
+            item.images = req.body.images;
+            item.offer = req.body.offer;
+
+            item.save()
+                .then(() => res.json('Item updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+//update item details
 router.route('/update/:id').post((req, res) => {
     Item.findById(req.params.id)
         .then(item => {
