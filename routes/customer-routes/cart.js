@@ -18,6 +18,12 @@ router.route('/history/:id').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/historyOfPaid').get((req, res) => {
+    Cart.find({ paidStatus: true, deliveredStatus: false})
+        .then(items => res.json(items))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/add').post((req, res) => {
     const itemId = req.body.itemId;
     const itemName = req.body.itemName;
@@ -30,6 +36,7 @@ router.route('/add').post((req, res) => {
     const userId = req.body.userId;
     const showOnCart = req.body.showOnCart;
     const paidStatus = req.body.paidStatus;
+    const deliveredStatus = false;
 
     const newCart = new Cart({
         itemId,
@@ -43,6 +50,7 @@ router.route('/add').post((req, res) => {
         userId,
         showOnCart,
         paidStatus,
+        deliveredStatus
     });
 
     newCart.save()
@@ -80,12 +88,25 @@ router.route('/update/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/update-delivered-status/:id').post((req, res) => {
+    Cart.findById(req.params.id)
+        .then(item => {
+            item.deliveredStatus = true;
+
+            item.save()
+                .then(() => res.json('Delivery Status Updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/updatePayment/:id').post((req, res) => {
     Cart.findById(req.params.id)
         .then(item => {
             item.showOnCart = req.body.showOnCart;
             item.paidStatus = req.body.paidStatus;
             item.orderedDate = req.body.orderedDate;
+            item.deliveredStatus = false;
 
             item.save()
                 .then(() => res.json('Payment updated!'))

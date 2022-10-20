@@ -15,6 +15,7 @@ const itemCartSchema = new Schema({
     paidStatus: { type: Boolean },
     orderedDate: { type: String },
     userId: { type: String, required: true },
+    deliveredStatus: { type: Boolean }
 
 }, {
     timestamps: true,
