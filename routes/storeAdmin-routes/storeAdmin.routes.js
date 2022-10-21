@@ -68,7 +68,7 @@ router.route('/update/:id').post((req, res) => {
             const x = parseInt(item.orderedQuanity);
             const y = parseInt(req.body.orderedQuanity);
 
-            var sum = x + y;
+            let sum = x + y;
             item.orderedQuanity = sum;
 
             item.save()
@@ -86,7 +86,7 @@ router.route('/updateItemPayment/:id').post((req, res) => {
             const a = parseInt(item.orderedQuanity);
             const b = parseInt(req.body.orderedQuanity);
 
-            var sum = a + b;
+            let sum = a + b;
             item.orderedQuanity = sum;
 
             const x = parseInt(item.quantity);
