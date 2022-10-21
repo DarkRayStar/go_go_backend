@@ -8,7 +8,6 @@ const deliveryOrderSchema = new Schema({
     mobileNumber: { type: String, required: true },
     landlineNumber: { type: String, required: true },
     email: [{ type: String }],
-    address: { type: String, required: true },
     district: { type: String, required: true },
     province: { type: String, required: true },
     address: { type: String, required: true },
